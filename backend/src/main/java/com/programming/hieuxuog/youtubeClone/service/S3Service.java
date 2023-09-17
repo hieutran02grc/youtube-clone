@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class S3Service implements FileService {
     public String uploadFile(MultipartFile file) {
         var filenameExtension = StringUtils.getFilenameExtension(file.getOriginalFilename());
 
-        var key = UUID.randomUUID().toString() + filenameExtension;
+        var key = UUID.randomUUID().toString() + "." + filenameExtension;
 
         var metadata = new ObjectMetadata();
         metadata.setContentLength(file.getSize());
